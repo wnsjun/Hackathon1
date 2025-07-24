@@ -1,13 +1,15 @@
-import { Outlet } from 'react-router-dom';
-import { Navbar } from './Navbar';
+import { Outlet, useLocation } from "react-router-dom";
+import { Navbar } from "./Navbar";
 
 export const Layout = () => {
+  const location = useLocation();
+  // 로그인 페이지에서는 Navbar 숨김
+  const hideNavbar = location.pathname === "/" || location.pathname === "/login";
+
   return (
     <>
-      <Navbar />
-      <div className="pt-20 bg-white text-black min-h-screen">
-        <Outlet />
-      </div>
+      {!hideNavbar && <Navbar />}
+      <Outlet />
     </>
   );
 };
