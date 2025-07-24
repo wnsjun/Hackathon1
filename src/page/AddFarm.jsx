@@ -25,7 +25,7 @@ const AddFarm = () => {
   return (
     <>
       <Navbar />
-      <div className="max-w-4xl mx-auto my-20 px-6">
+      <div className="max-w-4xl mx-auto my-20 px-6 mt-8 ">
         {/* 매물올리기 + 등록 버튼 */}
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-bold">매물 올리기</h1>
