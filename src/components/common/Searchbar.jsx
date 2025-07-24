@@ -11,7 +11,7 @@ export const Searchbar = ({ onSearch }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex items-center border border-gray-300 rounded-full px-4 py-2 bg-white shadow-sm transition-all focus-within:ring-2 focus-within:ring-blue-500 w-72"
+      className="flex items-center border border-gray-300 rounded-full px-4 py-2 bg-white shadow-sm transition-all focus-within:ring-2 focus-within:ring-green-500 w-72"
     >
       <input
         type="text"
@@ -22,7 +22,7 @@ export const Searchbar = ({ onSearch }) => {
       />
       <button
         type="submit"
-        className="cursor-pointer ml-3 text-sm px-4 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded-full transition-all"
+        className="cursor-pointer ml-3 text-sm px-4 py-1 bg-green-600 hover:bg-green-400 text-white rounded-full transition-all"
       >
         검색
       </button>

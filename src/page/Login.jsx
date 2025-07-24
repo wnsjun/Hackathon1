@@ -18,11 +18,11 @@ export const Login = () => {
   };
 
   return (
-    <main className="flex flex-col items-center justify-center h-screen flex-1 bg-white cursor-pointer">
+    <main className="flex flex-col items-center justify-center h-screen flex-1 bg-white ">
       <img
         src={SpaceFarm}
         alt="로고"
-        className="h-10 w-auto"
+        className="h-10 w-auto cursor-pointer"
         onClick={handleTitleClick}
       />
       <h1

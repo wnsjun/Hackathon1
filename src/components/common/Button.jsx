@@ -2,7 +2,7 @@ const Button = ({
   children,
   onClick,
   disabled = false,
-  color = 'blue',
+  color = 'green',
   type = 'button',
   ...props
 }) => {
@@ -14,7 +14,7 @@ const Button = ({
     green: 'bg-green-600 hover:bg-green-700 disabled:bg-green-300',
     gray: 'bg-gray-600 hover:bg-gray-700 disabled:bg-gray-300',
   };
-  const colorClasses = colors[color] || colors.blue;
+  const colorClasses = colors[color] || colors.green;
 
   return (
     <button
