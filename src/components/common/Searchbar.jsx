@@ -22,7 +22,7 @@ export const Searchbar = ({ onSearch }) => {
       />
       <button
         type="submit"
-        className="ml-3 text-sm px-4 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded-full transition-all"
+        className="cursor-pointer ml-3 text-sm px-4 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded-full transition-all"
       >
         검색
       </button>

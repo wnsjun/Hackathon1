@@ -18,7 +18,7 @@ export const Login = () => {
   };
 
   return (
-    <main className="flex flex-col items-center justify-center h-screen flex-1 bg-white">
+    <main className="flex flex-col items-center justify-center h-screen flex-1 bg-white cursor-pointer">
       <img
         src={SpaceFarm}
         alt="로고"

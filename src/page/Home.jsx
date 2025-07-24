@@ -27,7 +27,7 @@ const Home = () => {
   const farmsToShow = filteredFarms.slice(0, 6);
 
   return (
-    <div className="p-12">
+    <div className="p-12 my-12">
       <img
         src={banner}
         alt="소개 배너"
