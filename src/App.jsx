@@ -9,8 +9,11 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="/login" element={<Login />} />
+          {/* "/"와 "/login" 모두 로그인 페이지로 */}
+          <Route index element={<Login />} />
+          <Route path="login" element={<Login />} />
+          {/* 로그인 성공 시 "/home"으로 이동 */}
+          <Route path="home" element={<Home />} />
         </Route>
       </Routes>
     </BrowserRouter>
