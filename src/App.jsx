@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './page/Home';
 import { Login } from './page/Login';
 import { Layout } from './components/layouts/Layout'
-import { ChatPage } from "./page/Chat";
+import { ChatPage } from "./page/ChatPage";
 
 const App = () => {
   return (

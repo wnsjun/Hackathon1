@@ -1,6 +1,6 @@
 import React from "react";
 
-const ChatPage = () => {
+export const ChatPage = () => {
   return (
     <div className="flex flex-1 bg-[#F5F5F5] h-screen">
       {/* 채팅 목록 */}
@@ -52,5 +52,3 @@ const ChatPage = () => {
     </div>
   );
 };
-
-export default ChatPage; 
