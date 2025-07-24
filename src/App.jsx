@@ -4,6 +4,7 @@ import { Login } from './page/Login';
 import { Layout } from './components/layouts/Layout';
 import { ChatPage } from './page/ChatPage';
 import AddFarm from './page/AddFarm';
+import PlantDetail from './page/PlantDetail';
 import { Community } from './page/Community';
 
 
@@ -18,6 +19,7 @@ const App = () => {
           {/* 로그인 성공 시 "/home"으로 이동 */}
           <Route path="home" element={<Home />} />
           <Route path="addfarm" element={<AddFarm />} />
+          <Route path="plant/:id" element={<PlantDetail />} />
           <Route path="/chat" element={<ChatPage />} />
           <Route path="/community" element={<Community />} />
         </Route>
