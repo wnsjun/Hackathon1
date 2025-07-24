@@ -1,8 +1,7 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home } from './page/Home'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './page/Home';
 import { Login } from './page/Login';
-import { Layout } from './components/layouts/Layout'
-
+import { Layout } from './components/layouts/Layout';
 
 const App = () => {
   return (

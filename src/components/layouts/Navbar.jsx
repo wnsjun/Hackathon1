@@ -1,16 +1,32 @@
 import { Link } from 'react-router-dom';
+import { Searchbar } from '../common/Searchbar';
 
 export const Navbar = () => {
+  const handleSearch = (query) => {
+    console.log('검색어:', query);
+  };
+
   return (
-    <nav className="fixed top-0 border-b-1 border-black left-0 right-0 h-20 bg-white text-black flex items-center justify-between px-10 z-50">
-      <div className="space-x-10 flex items-center">
+    <nav className="fixed top-0 left-0 right-0 h-20 bg-white text-black border-b border-black z-50 flex items-center px-10">
+      {/* 왼쪽 메뉴 */}
+      <div className="w-1/3 flex items-center space-x-10">
         <Link to="/" className="font-semibold text-2xl">
           Home
         </Link>
-        <Link to="/1">1</Link>
-        <Link to="/2">2</Link>
+        <Link to="/1">홈</Link>
+        <Link to="/2">커뮤니티</Link>
       </div>
-      <Link to="/login">Login</Link>
+
+      {/* 가운데 검색바 */}
+      <div className="w-1/3 flex justify-center">
+        <Searchbar onSearch={handleSearch} />
+      </div>
+
+      {/* 오른쪽 메뉴 */}
+      <div className="w-1/3 flex justify-end items-center space-x-10">
+        <Link to="/1">채팅</Link>
+        <Link to="/4">내 프로필</Link>
+      </div>
     </nav>
   );
 };
