@@ -3,7 +3,8 @@ import Home from './page/Home';
 import { Login } from './page/Login';
 import { Layout } from './components/layouts/Layout';
 import { ChatPage } from './page/Chat';
-// import { AddFarm } from './page/AddFarm';
+import { AddFarm } from './page/AddFarm';
+
 
 const App = () => {
   return (
