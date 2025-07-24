@@ -2,15 +2,13 @@ import kakaoLogo from '../assets/kakao-icon.svg';
 import { useNavigate } from 'react-router-dom';
 
 export const Login = () => {
-  const REDIRECT_URI = import.meta.env.VITE_KAKAO_REDIRECT_URI;
-  const REST_API_KEY = import.meta.env.VITE_KAKAO_API_KEY;
   const navigate = useNavigate();
 
-  // 인가코드 받는 함수 작성
-  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}`;
+  // 카카오 소셜 로그인 백엔드 엔드포인트
+  const backendKakaoURL = '/oauth2/authorization/kakao';
 
   const handleLogin = () => {
-    window.location.href = kakaoURL;
+    window.location.href = backendKakaoURL;
   };
 
   // 스페이스팜 버튼 클릭 시 home으로 이동
