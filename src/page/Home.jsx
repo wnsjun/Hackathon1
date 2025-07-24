@@ -5,6 +5,7 @@ import { mockFarms } from '../data/mockFarms';
 import Button from '../components/common/Button';
 import banner from '../assets/banner.png';
 
+
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }

@@ -6,6 +6,7 @@ import { ChatPage } from './page/Chat';
 import AddFarm from './page/AddFarm';
 import PlantDetail from './page/PlantDetail';
 
+
 const App = () => {
   return (
     <BrowserRouter>
