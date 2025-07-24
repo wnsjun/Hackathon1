@@ -26,10 +26,10 @@ export const Login = () => {
         onClick={handleTitleClick}
       />
       <h1
-        className="text-[#191919] text-2xl font-semibold text-center mb-8 cursor-pointer"
+        className="text-green-600 text-2xl font-semibold text-center mb-8 cursor-pointer"
         onClick={handleTitleClick}
       >
-        스페이스팜
+        SpaceFarm
       </h1>
 
       <button
@@ -37,7 +37,7 @@ export const Login = () => {
         className="flex items-center justify-center gap-2 w-[280px] py-3 cursor-pointer rounded-md bg-[#FEE500] text-[#191919] hover:opacity-90 transition"
       >
         <img src={kakaoLogo} alt="kakao" className="w-6 h-6" />
-        <span className="text-base font-semibold">카카오로 계속하기</span>
+        <span className="text-base font-semibold">카카오로 로그인하기</span>
       </button>
     </main>
   );
