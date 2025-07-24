@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from './page/Home'
 import { Login } from './page/Login';
 import { Layout } from './components/layouts/Layout'
+import { ChatPage } from "./page/Chat";
 
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
           <Route path="login" element={<Login />} />
           {/* 로그인 성공 시 "/home"으로 이동 */}
           <Route path="home" element={<Home />} />
+          <Route path="/chat" element={<ChatPage/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
