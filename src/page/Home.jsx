@@ -123,10 +123,10 @@
 // };
 
 // export default Home;
-
 import { useState, useEffect } from 'react';
 import FarmCard from '../components/common/FarmCard';
 import { mockFarms } from '../data/mockFarms';
+import Button from '../components/common/Button';
 
 const Home = () => {
   const [farms, setFarms] = useState([]);
@@ -139,7 +139,26 @@ const Home = () => {
 
   return (
     <div className="p-6">
-      <div className="w-1120 h-351">소개배너</div>>
+      <div className="w-[1120px] h-[351px] bg-gray-200 mb-6 flex items-center justify-center">
+        소개배너
+      </div>
+
+      <div className="flex justify-between items-center mb-6 max-w-6xl mx-auto">
+        <h1
+          style={{
+            color: '#000',
+            fontFamily: 'Pretendard, sans-serif',
+            fontSize: '24px',
+            fontStyle: 'normal',
+            fontWeight: 700,
+            lineHeight: '160%',
+          }}
+        >
+          텃밭 매물 확인
+        </h1>
+        <Button onClick={() => alert('버튼 클릭!')}>매물 등록</Button>
+      </div>
+
       {farmsToShow.length === 0 ? (
         <p className="text-center text-gray-500">등록된 텃밭이 없습니다.</p>
       ) : (
