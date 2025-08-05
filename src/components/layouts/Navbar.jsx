@@ -41,6 +41,7 @@ export const Navbar = () => {
       {/* 오른쪽 메뉴 */}
       <div className="w-1/3 flex justify-end items-center space-x-10">
         <Link to="/chat">채팅</Link>
+        <Link to="/login">로그인</Link>
         <Link to="/profile">내 프로필</Link>
       </div>
     </nav>

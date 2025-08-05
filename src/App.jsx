@@ -13,15 +13,13 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          {/* "/"와 "/login" 모두 로그인 페이지로 */}
-          <Route index element={<Login />} />
-          <Route path="login" element={<Login />} />
-          {/* 로그인 성공 시 "/home"으로 이동 */}
+          <Route index element={<Home />} />
           <Route path="home" element={<Home />} />
           <Route path="addfarm" element={<AddFarm />} />
           <Route path="plant/:id" element={<PlantDetail />} />
           <Route path="/chat" element={<ChatPage />} />
           <Route path="/community" element={<Community />} />
+          <Route path="/login" element={<Login />} />
         </Route>
       </Routes>
     </BrowserRouter>
