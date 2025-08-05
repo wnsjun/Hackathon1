@@ -41,8 +41,6 @@ export const Login = () => {
         SpaceFarm
       </h1>
 
-
-
       <form
         onSubmit={handleNormalLogin}
         className="flex flex-col gap-2 w-[280px] mt-8"
@@ -83,7 +81,7 @@ export const Login = () => {
         className="flex items-center justify-center gap-2 w-[280px] py-3 cursor-pointer rounded-md bg-[#FEE500] text-[#191919] hover:opacity-90 transition mt-10"
       >
         <img src={kakaoLogo} alt="kakao" className="w-6 h-6" />
-        <span className="text-base font-semibold">카카오로 로그인하기</span>
+        <span className="text-base font-semibold">카카오톡으로 간편로그인</span>
       </button>
     </main>
   );
