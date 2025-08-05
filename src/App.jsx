@@ -6,6 +6,7 @@ import { ChatPage } from './page/ChatPage';
 import AddFarm from './page/AddFarm';
 import PlantDetail from './page/PlantDetail';
 import { Community } from './page/Community';
+import { Signup } from './page/Signup';
 
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/chat" element={<ChatPage />} />
           <Route path="/community" element={<Community />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
         </Route>
       </Routes>
     </BrowserRouter>
