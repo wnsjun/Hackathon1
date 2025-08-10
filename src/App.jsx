@@ -7,7 +7,7 @@ import AddFarm from './page/AddFarm';
 import PlantDetail from './page/PlantDetail';
 import { Community } from './page/Community';
 import { Signup } from './page/Signup';
-import MyPage from './page/MyPage';
+import {MyPage} from './page/MyPage';
 
 
 const App = () => {

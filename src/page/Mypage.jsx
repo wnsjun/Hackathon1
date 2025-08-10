@@ -49,7 +49,7 @@ const CommunityCard = ({ post }) => {
   );
 };
 
-const MyPage = () => {
+export const MyPage = () => {
   const navigate = useNavigate();
   const [farmToggle, setFarmToggle] = useState('my');
   const [communityToggle, setCommunityToggle] = useState('written');
@@ -226,5 +226,3 @@ const MyPage = () => {
     </div>
   );
 };
-
-export default MyPage;
