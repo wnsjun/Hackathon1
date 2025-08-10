@@ -8,9 +8,9 @@ const FarmCard = ({ farm, isRecommended }) => {
     navigate(`/plant/${farm.id}`, { state: { farm } });
   };
 
-  const handleChatClick = (e) => {
+  const handleDetailClick = (e) => {
     e.stopPropagation();
-    navigate('/chat');
+    navigate(`/plant/${farm.id}`, { state: { farm } });
   };
 
   return (
@@ -26,11 +26,7 @@ const FarmCard = ({ farm, isRecommended }) => {
             backgroundImage: `url(${plant})`,
           }}
         />
-        {isRecommended && (
-          <div className="absolute top-3 left-3 bg-green-500 text-white text-xs px-2 py-1 rounded">
-            작은 텃밭용 소금쟁이 20마리
-          </div>
-        )}
+
       </div>
 
       {/* 카드 내용 */}
@@ -39,7 +35,7 @@ const FarmCard = ({ farm, isRecommended }) => {
           <h3 className="text-base font-semibold text-gray-900 flex-1">
             {farm.title}
           </h3>
-          <span className="text-xs text-gray-500 ml-2">16㎡</span>
+          <span className="text-xs text-gray-500 ml-2">{farm.area}㎡</span>
         </div>
 
         <div className="flex items-center gap-1 mb-3">
@@ -51,14 +47,14 @@ const FarmCard = ({ farm, isRecommended }) => {
 
         <div className="flex justify-between items-center">
           <div className="text-green-600 font-semibold">
-            <span className="text-lg">{farm.price}</span>
+            <span className="text-lg">{farm.priceText}</span>
             <span className="text-sm"> / {farm.rentalPeriod}</span>
           </div>
           <button
-            onClick={handleChatClick}
+            onClick={handleDetailClick}
             className="text-sm text-gray-600 hover:text-gray-800 flex items-center gap-1"
           >
-            채팅하기 〉
+            자세히 보기 〉
           </button>
         </div>
       </div>

@@ -26,6 +26,7 @@
 - **라우팅**: `React Router DOM 7.7.0`
 - **API 통신**: `Axios 1.11.0`
 - **타입 지원**: `@types/react`, `@types/react-dom`
+- typescript 사용금지, javascript만 사용하세요
 
 ### 개발 도구
 
