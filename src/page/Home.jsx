@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import FarmCard from '../components/common/FarmCard';
 import { mockFarms } from '../data/mockFarms';
+import { fetchAllFarms } from '../apis/home';
 import ChatbotIcon from '../components/common/ChatbotIcon';
 import { Navbar } from '../components/layouts/Navbar';
 import banner from '../assets/banner.png';
@@ -16,6 +17,8 @@ function useQuery() {
 
 const Home = () => {
   const [farms, setFarms] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [filters, setFilters] = useState({
     location: '위치',
     area: '평수',
@@ -26,10 +29,10 @@ const Home = () => {
   const [appliedFilters, setAppliedFilters] = useState({
     location: [],
     area: { minArea: 16, maxArea: 100 },
-    price: { minPrice: 1000, maxPrice: 10000 },
+    price: { minPrice: 1000, maxPrice: 1000000 },
     theme: []
   });
-  const [userName] = useState('00'); // 실제로는 사용자 정보에서 가져와야 함
+  const [userName] = useState('00');
   const query = useQuery();
   const searchQuery = query.get('query') || '';
   const navigate = useNavigate();
@@ -38,7 +41,7 @@ const Home = () => {
     setAppliedFilters({
       location: [],
       area: { minArea: 16, maxArea: 100 },
-      price: { minPrice: 1000, maxPrice: 10000 },
+      price: { minPrice: 1000, maxPrice: 1000000 },
       theme: []
     });
     setFilters({
@@ -51,8 +54,23 @@ const Home = () => {
     navigate('/home');
   };
 
+  const loadFarms = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const data = await fetchAllFarms();
+      setFarms(data);
+    } catch (err) {
+      console.error('매물 목록 로딩 실패:', err);
+      setError('매물 목록을 불러올 수 없습니다.');
+      setFarms(mockFarms);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    setFarms(mockFarms);
+    loadFarms();
   }, []);
 
   useEffect(() => {
@@ -68,29 +86,36 @@ const Home = () => {
   }, []);
 
   const filteredFarms = farms.filter((farm) => {
-    // 검색어 필터링
-    const matchesSearch = farm.address.toLowerCase().includes(searchQuery.toLowerCase());
+    // API DTO 구조: { id, title, price, rentalPeriod, address, isAvailable }
+    
+    // 검색어 필터링 (제목과 주소에서 검색)
+    const matchesSearch = !searchQuery || 
+      farm.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      farm.address?.toLowerCase().includes(searchQuery.toLowerCase());
     
     // 위치 필터링
     const matchesLocation = appliedFilters.location.length === 0 || 
-      appliedFilters.location.some(loc => farm.address.includes(loc.split(' ')[0]));
+      appliedFilters.location.some(loc => farm.address?.includes(loc.split(' ')[0]));
     
-    // 평수 필터링 (area는 ㎡ 단위로 가정)
-    const farmArea = farm.area || 20; // 기본값 20㎡
+    // 평수 필터링 (mockFarms와 호환성을 위해 area 속성도 확인)
+    const farmArea = farm.area || farm.size || 20;
     const matchesArea = farmArea >= appliedFilters.area.minArea && 
       farmArea <= appliedFilters.area.maxArea;
     
     // 가격 필터링
-    const farmPrice = farm.price || 2000; // 기본값 2000원/일
+    const farmPrice = farm.price;
     const matchesPrice = farmPrice >= appliedFilters.price.minPrice && 
       farmPrice <= appliedFilters.price.maxPrice;
     
-    // 테마 필터링
-    const farmTheme = farm.theme || '옥상'; // 기본값 옥상
+    // 테마 필터링 (mockFarms와 호환성을 위해)
+    const farmTheme = farm.theme;
     const matchesTheme = appliedFilters.theme.length === 0 || 
       appliedFilters.theme.includes(farmTheme);
     
-    return matchesSearch && matchesLocation && matchesArea && matchesPrice && matchesTheme;
+    // 사용 가능한 매물만 표시 (API에서 제공하는 경우)
+    const isAvailable = farm.isAvailable !== false;
+    
+    return matchesSearch && matchesLocation && matchesArea && matchesPrice && matchesTheme && isAvailable;
   });
 
   const handleFilterDropdownChange = (filterType) => {
@@ -130,8 +155,7 @@ const Home = () => {
   };
 
   const handleViewAllRecommendationsClick = () => {
-    // 전체 추천 보기 핸들러
-    navigate('/recommendations');
+    loadFarms();
   };
 
   return (
@@ -250,7 +274,31 @@ const Home = () => {
           </div>
 
           {/* 농장 카드들 */}
-          {filteredFarms.length === 0 ? (
+          {loading ? (
+            <div className="text-center py-16">
+              <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center animate-spin">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-gray-400">
+                  <path stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 11-6.219-8.56"/>
+                </svg>
+              </div>
+              <p className="text-gray-500 text-lg">매물 목록을 불러오는 중...</p>
+            </div>
+          ) : error ? (
+            <div className="text-center py-16">
+              <div className="w-16 h-16 mx-auto mb-4 bg-red-100 rounded-full flex items-center justify-center">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-red-400">
+                  <path stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                </svg>
+              </div>
+              <p className="text-red-600 text-lg mb-2">{error}</p>
+              <button 
+                onClick={loadFarms}
+                className="text-green-600 hover:text-green-700 underline"
+              >
+                다시 시도
+              </button>
+            </div>
+          ) : filteredFarms.length === 0 ? (
             <div className="text-center py-16">
               <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-gray-400">
@@ -258,8 +306,8 @@ const Home = () => {
                   <path stroke="currentColor" strokeWidth="1.5" d="M8 12h8M12 8v8"/>
                 </svg>
               </div>
-              <p className="text-gray-500 text-lg mb-2">등록된 텃밭이 없습니다</p>
-              <p className="text-gray-400 text-sm">새로운 텃밭을 등록해보세요</p>
+              <p className="text-gray-500 text-lg mb-2">조건에 맞는 텃밭이 없습니다</p>
+              <p className="text-gray-400 text-sm">필터 조건을 변경해보세요</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
