@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import FarmCard from '../components/common/FarmCard';
 import { mockFarms } from '../data/mockFarms';
-import Button from '../components/common/Button';
 import ChatbotIcon from '../components/common/ChatbotIcon';
 import { Navbar } from '../components/layouts/Navbar';
 import banner from '../assets/banner.png';
